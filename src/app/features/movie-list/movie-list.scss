@@ -1,0 +1,33 @@
+.movie-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 20px 0;
+}
+
+.movie-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  img {
+    height: 350px;
+    object-fit: cover;
+  }
+
+  .description {
+    margin-top: 10px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+.rating {
+  margin-left: auto;
+  font-weight: bold;
+  color: #f5c518;
+  padding-right: 16px;
+}

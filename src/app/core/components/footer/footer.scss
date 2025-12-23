@@ -1,0 +1,25 @@
+.footer {
+  background-color: #333; /* Темно-сірий фон */
+  color: #fff; /* Білий текст */
+  padding: 20px 0;
+  margin-top: 40px; /* Відступ від контенту */
+
+  .container {
+    display: flex;
+    align-items: center;
+  }
+
+  a {
+    color: #fff;
+    text-decoration: none;
+    margin-left: 20px;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .spacer {
+    flex: 1 1 auto; /* Розштовхує текст і посилання по краях */
+  }
+}
