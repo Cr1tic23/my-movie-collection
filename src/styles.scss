@@ -1,5 +1,3 @@
-/* You can add global styles to this file, and also import other style files */
-/* Скидання відступів браузера за замовчуванням */
 @import '@angular/material/prebuilt-themes/indigo-pink.css';
 
 html,
@@ -7,20 +5,19 @@ body {
   height: 100%;
   margin: 0;
   font-family: Roboto, 'Helvetica Neue', sans-serif;
-  display: flex; /* <-- Додаємо Flexbox */
-  flex-direction: column; /* <-- Колонка */
+  display: flex;
+  flex-direction: column;
 }
 
 app-root {
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* На всю висоту екрану */
+  min-height: 100vh;
   width: 100%;
 }
 
-/* Зробимо контейнер для контенту, щоб він не розтягувався на 4к монітори */
 main.container {
   flex: 1;
-  width: 100%; /* Додаємо ширину */
-  box-sizing: border-box; /* Щоб падінги не ламали ширину */
+  width: 100%;
+  box-sizing: border-box;
 }

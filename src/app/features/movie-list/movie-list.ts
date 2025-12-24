@@ -34,11 +34,10 @@ export class MovieList {
   searchControl = new FormControl('');
 
   filteredMovies$: Observable<Movie[]> = combineLatest([
-    this.moviesService.getMovies(), // Беремо фільми з бази
+    this.moviesService.getMovies(),
     this.searchControl.valueChanges.pipe(startWith('')),
   ]).pipe(
     map(([movies, searchTerm]) => {
-      // 3. Фільтруємо
       const term = (searchTerm || '').toLowerCase();
       return movies.filter((movie) => movie.title.toLowerCase().includes(term));
     })

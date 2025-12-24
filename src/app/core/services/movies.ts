@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { Firestore, collection, getDocs, doc, getDoc } from '@angular/fire/firestore';
+import { Firestore, collection, getDocs, doc, getDoc, addDoc } from '@angular/fire/firestore';
 import { from, map, Observable } from 'rxjs';
 import { Movie } from '../models/movie';
 
@@ -51,5 +51,10 @@ export class MoviesService {
         } as Movie;
       })
     );
+  }
+
+  addMovie(movie: any) {
+    const colRef = collection(this.firestore, 'movies');
+    return addDoc(colRef, movie);
   }
 }
