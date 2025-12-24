@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { Firestore, collection, getDocs } from '@angular/fire/firestore';
+import { Firestore, collection, getDocs, doc, getDoc } from '@angular/fire/firestore';
 import { from, map, Observable } from 'rxjs';
 import { Movie } from '../models/movie';
 
@@ -10,11 +10,8 @@ export class MoviesService {
   private firestore = inject(Firestore);
 
   getMovies(): Observable<Movie[]> {
-    // 1. Отримуємо посилання на колекцію
     const moviesCol = collection(this.firestore, 'movies');
 
-    // 2. Використовуємо 'from', щоб перетворити Promise від Firebase в Observable (RxJS)
-    // getDocs — це пряме отримання даних без зайвих обгорток
     return from(getDocs(moviesCol)).pipe(
       map((snapshot) => {
         return snapshot.docs.map((doc) => {
@@ -27,8 +24,31 @@ export class MoviesService {
             genre: data['genre'],
             description: data['description'],
             rating: data['rating'],
+            director: data['director'],
+            actors: data['actors'],
           } as Movie;
         });
+      })
+    );
+  }
+
+  getMovieById(id: string): Observable<Movie | undefined> {
+    const docRef = doc(this.firestore, 'movies', id);
+    return from(getDoc(docRef)).pipe(
+      map((snapshot) => {
+        if (!snapshot.exists()) return undefined;
+        const data = snapshot.data() as any;
+        return {
+          id: snapshot.id,
+          title: data['title'],
+          year: data['year'],
+          posterUrl: data['posterUrl'],
+          genre: data['genre'],
+          description: data['description'],
+          rating: data['rating'],
+          director: data['director'],
+          actors: data['actors'],
+        } as Movie;
       })
     );
   }

@@ -1,0 +1,41 @@
+<div class="details-container">
+  <!-- Кнопка "Назад" -->
+  <a mat-button routerLink="/" class="back-btn"> ⬅ Back to list </a>
+
+  @if (movie$ | async; as movie) {
+  <div class="movie-content">
+    <div class="poster">
+      <img [src]="movie.posterUrl" [alt]="movie.title" />
+    </div>
+
+    <div class="info">
+      <h1>
+        {{ movie.title }} <span class="year">({{ movie.year }})</span>
+      </h1>
+
+      <div class="meta">
+        <span class="genre">{{ movie.genre }}</span>
+        <span class="rating">★ {{ movie.rating }}/10</span>
+      </div>
+
+      <div class="crew-info">
+        @if (movie.director) {
+        <p><strong>Director:</strong> {{ movie.director }}</p>
+        } @if (movie.actors && movie.actors.length > 0) {
+        <p><strong>Cast:</strong> {{ movie.actors.join(', ') }}</p>
+        }
+      </div>
+
+      <h3>Plot</h3>
+      <p class="description">{{ movie.description }}</p>
+
+      <div class="actions">
+        <!-- Кнопки редагування будуть пізніше -->
+        <button mat-raised-button color="primary">Edit Movie</button>
+      </div>
+    </div>
+  </div>
+  } @else {
+  <p>Loading or movie not found...</p>
+  }
+</div>

@@ -6,4 +6,6 @@ export interface Movie {
   genre: string;
   description: string;
   rating: number; // від 1 до 100
+  director?: string;
+  actors?: string[];
 }
