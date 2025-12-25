@@ -26,9 +26,9 @@ export class MovieAdd implements OnInit {
   private fb = inject(FormBuilder);
   private moviesService = inject(MoviesService);
   private router = inject(Router);
-  private route = inject(ActivatedRoute); // Для читання ID з URL
+  private route = inject(ActivatedRoute);
 
-  movieId: string | null = null; // Тут буде ID, якщо ми редагуємо
+  movieId: string | null = null;
   isEditMode = false;
 
   movieForm = this.fb.group({
@@ -43,18 +43,14 @@ export class MovieAdd implements OnInit {
   });
 
   ngOnInit() {
-    // Перевіряємо, чи є ID в адресі (наприклад /edit/123)
     this.movieId = this.route.snapshot.paramMap.get('id');
 
     if (this.movieId) {
       this.isEditMode = true;
-      // Завантажуємо дані фільму
       this.moviesService.getMovieById(this.movieId).subscribe((movie) => {
         if (movie) {
-          // Конвертуємо масив акторів назад у рядок для форми
           const actorsString = movie.actors ? movie.actors.join(', ') : '';
 
-          // Заповнюємо форму даними з бази
           this.movieForm.patchValue({
             ...movie,
             actors: actorsString,
@@ -75,12 +71,10 @@ export class MovieAdd implements OnInit {
       };
 
       if (this.isEditMode && this.movieId) {
-        // РЕЖИМ РЕДАГУВАННЯ: Оновлюємо
         this.moviesService.updateMovie(this.movieId, movieData as any).then(() => {
-          this.router.navigate(['/movies', this.movieId]); // Повертаємось на деталі
+          this.router.navigate(['/movies', this.movieId]);
         });
       } else {
-        // РЕЖИМ ДОДАВАННЯ: Створюємо
         this.moviesService.addMovie(movieData).then(() => {
           this.router.navigate(['/']);
         });
