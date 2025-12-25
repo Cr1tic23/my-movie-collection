@@ -20,6 +20,11 @@ export const routes: Routes = [
     canActivate: [authGuard],
   },
   {
+    path: 'edit/:id',
+    component: MovieAdd,
+    canActivate: [authGuard],
+  },
+  {
     path: 'movies/:id',
     component: MovieDetails,
   },

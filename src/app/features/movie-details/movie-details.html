@@ -30,8 +30,7 @@
       <p class="description">{{ movie.description }}</p>
 
       <div class="actions">
-        <!-- Кнопки редагування будуть пізніше -->
-        <button mat-raised-button color="primary">Edit Movie</button>
+        <a mat-raised-button color="primary" [routerLink]="['/edit', movie.id]"> Edit Movie </a>
       </div>
     </div>
   </div>

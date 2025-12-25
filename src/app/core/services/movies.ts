@@ -1,5 +1,13 @@
 import { Injectable, inject } from '@angular/core';
-import { Firestore, collection, getDocs, doc, getDoc, addDoc } from '@angular/fire/firestore';
+import {
+  Firestore,
+  collection,
+  getDocs,
+  doc,
+  getDoc,
+  addDoc,
+  updateDoc,
+} from '@angular/fire/firestore';
 import { from, map, Observable } from 'rxjs';
 import { Movie } from '../models/movie';
 
@@ -56,5 +64,10 @@ export class MoviesService {
   addMovie(movie: any) {
     const colRef = collection(this.firestore, 'movies');
     return addDoc(colRef, movie);
+  }
+
+  updateMovie(id: string, data: Partial<Movie>) {
+    const docRef = doc(this.firestore, `movies/${id}`);
+    return updateDoc(docRef, data);
   }
 }
