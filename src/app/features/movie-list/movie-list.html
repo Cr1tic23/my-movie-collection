@@ -14,7 +14,7 @@
       <mat-card-subtitle>{{ movie.year }} | {{ movie.genre }}</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
-      <p class="description">{{ movie.description }}</p>
+      <p class="description">{{ movie.description | truncate : 100 }}</p>
     </mat-card-content>
     <mat-card-actions>
       <a mat-button color="primary" [routerLink]="['/movies', movie.id]">DETAILS</a>

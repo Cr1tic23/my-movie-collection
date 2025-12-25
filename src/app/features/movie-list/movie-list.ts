@@ -10,6 +10,7 @@ import { ReactiveFormsModule, FormControl } from '@angular/forms';
 import { MoviesService } from '../../core/services/movies';
 import { Observable, combineLatest, startWith, map } from 'rxjs';
 import { Movie } from '../../core/models/movie';
+import { TruncatePipe } from '../../shared/pipes/truncate-pipe';
 
 @Component({
   selector: 'app-movie-list',
@@ -24,6 +25,7 @@ import { Movie } from '../../core/models/movie';
     MatInputModule,
     MatIconModule,
     ReactiveFormsModule,
+    TruncatePipe,
   ],
   templateUrl: './movie-list.html',
   styleUrl: './movie-list.scss',
