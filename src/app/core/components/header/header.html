@@ -1,11 +1,19 @@
 <mat-toolbar color="primary">
+  <!-- Логотип -->
   <span class="logo" routerLink="/">MyMovieCollection</span>
 
   <span class="spacer"></span>
 
+  <!-- Кнопка Movies (для всіх) -->
   <a mat-button routerLink="/">Movies</a>
 
+  <!-- Блок авторизації -->
+  @if (user$ | async) {
+  <!-- Якщо увійшов: показуємо Add Movie і Logout -->
   <a mat-button routerLink="/add">Add Movie</a>
-
-  <a mat-button>Login</a>
+  <button mat-button (click)="logout()">Logout</button>
+  } @else {
+  <!-- Якщо гість: показуємо Login -->
+  <a mat-button routerLink="/login">Login</a>
+  }
 </mat-toolbar>

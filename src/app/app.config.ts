@@ -2,6 +2,9 @@ import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { provideAuth, getAuth } from '@angular/fire/auth';
+import { ErrorHandler } from '@angular/core';
+import { GlobalErrorHandler } from './core/handlers/global-error-handler';
 
 // Firebase
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
@@ -24,5 +27,7 @@ export const appConfig: ApplicationConfig = {
     provideAnimationsAsync(),
     provideFirebaseApp(() => initializeApp(firebaseConfig)),
     provideFirestore(() => getFirestore()),
+    provideAuth(() => getAuth()),
+    { provide: ErrorHandler, useClass: GlobalErrorHandler },
   ],
 };
